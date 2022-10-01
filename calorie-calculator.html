@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>TheNourishKey.com | Calorie calculator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="img/Stay Healthy (2).png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&family=Oswald:wght@300;400;700&family=Poppins&display=swap" rel="stylesheet">
+ <script src="https://kit.fontawesome.com/901d7d049c.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+
+<style>
+  body{
+    margin: 0;
+      overflow-x:hidden;
+  height: 100%;
+  width: 100%;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background-color:#F7E7CE;
+  }
+  h1{
+    color:crimson;
+    margin: 30px;
+  }
+  .flex-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .flex-item {
+        
+
+    width: 45%;
+    height: fit-content;
+    background-color: crimson;
+    color: #F7E7CE;
+    border-radius: 10px;
+  }
+
+  #calorie-form input {
+    width: 80%;
+    height: auto;
+  }
+#calorie-form select {
+    width: 80%;
+    height: auto;
+  }
+  #calorie-form {
+    padding: 5px;
+    width: 100%;
+
+  }
+
+  #calorie-form input::placeholder {
+    color: black;
+  }
+
+  .flex-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  #calorie-form label {
+    margin:5px;
+  }
+
+  .result {
+    text-align: center;
+  }
+  #submit-btn{
+    padding: 10px;
+    width:fit-content;
+    background-color: #F7E7CE;
+    color: crimson;
+    font-size:18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  #total-calories{
+    background-color:#F7E7CE;
+    font-size:18px ;
+    border-radius: 10px;
+  }
+
+  @media screen and (max-width:850px){
+    .flex-group{
+      flex-direction: column;
+    }
+    .flex-item{
+      width:60%;
+      flex-grow:3;
+    }
+  }
+</style>
+</head>
+<body>
+  <h1><center>Calculate Your maintained Basal value!</center></h1>
+  <div class="flex-container">
+    <div class="flex-item">
+
+      <form id="calorie-form">
+
+        <div class="flex-group">
+          <label for="age">Age</label>
+          <input type="number" id="age" placeholder="Ages 15-80">
+        </div>
+        <br>
+        <div class="flex-group">
+
+          <label for="gender">gender</label>
+          <div>
+            <label for="gender">M</label>
+          <input type="radio" id="male" name="gender">
+          </div>
+          <div>
+            <label for="gender">F</label>
+          <input type="radio" id="female" name="gender">
+          </div>
+        </div>
+        <br>
+        <div class="flex-group">
+
+          <label for="weight">Weight</label>
+          <input type="number" id="weight" placeholder="In kilograms">
+        </div>
+
+
+        <br>
+        <div class="flex-group">
+
+          <label for="height">Height</label>
+          <input type="number" id="height" placeholder="In centimeters">
+        </div>
+
+
+        <br>
+        <div class="flex-group">
+
+          <legend>Activity</legend>
+          <select id="list">
+            <option selected value="1">Sedentary (little or no exercise)</option>
+            <option value="2">Lightly active (light exercise/sports 1-3 days/week)</option>
+            <option value="3">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+            <option value="4">Very active (hard exercise/sports 6-7 days a week)</option>
+            <option value="5">Extra active (very hard exercise/sports & physical job or 2x training </option>
+          </select>
+        </div>
+        <br>
+        <div class="result">
+          <input type="submit" id="submit-btn" value="Calculate">
+          <h3>Total calories</h3>
+          <input type="number" id="total-calories" disabled>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+
+  <script>
+    
+    function calculateCalories(e) {
+
+      const age = document.getElementById('age');
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const weight = document.getElementById('weight');
+      const height = document.getElementById('height');
+      const activity = document.getElementById('list').value;
+      const totalCalories = document.getElementById('total-calories');
+
+
+       if (gender.id === 'male' && activity === "1") {
+        totalCalories.value = 1.2 * (66.5 + (13.75 * parseFloat(weight.value)) + (5.003 * parseFloat(height.value)) - (6.755 * parseFloat(age.value)));
+      } else if (gender.id === 'male' && activity === "2") {
+        totalCalories.value = 1.375 * (66.5 + (13.75 * parseFloat(weight.value)) + (5.003 * parseFloat(height.value)) - (6.755 * parseFloat(age.value)));
+      } else if (gender.id === 'male' && activity === "3") {
+        totalCalories.value = 1.55 * (66.5 + (13.75 * parseFloat(weight.value)) + (5.003 * parseFloat(height.value)) - (6.755 * parseFloat(age.value)));
+      } else if (gender.id === 'male' && activity === "4") {
+        totalCalories.value = 1.725 * (66.5 + (13.75 * parseFloat(weight.value)) + (5.003 * parseFloat(height.value)) - (6.755 * parseFloat(age.value)));
+      } else if (gender.id === 'male' && activity === "5") {
+        totalCalories.value = 1.9 * (66.5 + (13.75 * parseFloat(weight.value)) + (5.003 * parseFloat(height.value)) - (6.755 * parseFloat(age.value)))
+          ;
+      } else if (gender.id === 'female' && activity === "1") {
+        totalCalories.value = 1.2 * (655 + (9.563 * parseFloat(weight.value)) + (1.850 * parseFloat(height.value)) - (4.676 * parseFloat(age.value)));
+      } else if (gender.id === 'female' && activity === "2") {
+        totalCalories.value = 1.375 * (655 + (9.563 * parseFloat(weight.value)) + (1.850 * parseFloat(height.value)) - (4.676 * parseFloat(age.value)));
+      } else if (gender.id === 'female' && activity === "3") {
+        totalCalories.value = 1.55 * (655 + (9.563 * parseFloat(weight.value)) + (1.850 * parseFloat(height.value)) - (4.676 * parseFloat(age.value)));
+      } else if (gender.id === 'female' && activity === "4") {
+        totalCalories.value = 1.725 * (655 + (9.563 * parseFloat(weight.value)) + (1.850 * parseFloat(height.value)) - (4.676 * parseFloat(age.value)));
+      } else if (gender.id === 'female' && activity === "5"){
+        totalCalories.value = 1.9 * (655 + (9.563 * parseFloat(weight.value)) + (1.850 * parseFloat(height.value)) - (4.676 * parseFloat(age.value)));
+      } else {
+        totalCalories.value = 0;
+      }
+    }
+  </script>
+</body>
+
+</html>
